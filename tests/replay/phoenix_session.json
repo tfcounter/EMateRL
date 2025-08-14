@@ -1,0 +1,11 @@
+[
+  {
+    "user_text": "唉，提醒我一下，周五前必须完成‘凤凰项目’的草案。",
+    "speech_emotion": "stress",
+    "text_sentiment": "negative",
+    "context_flags": ["deadline_near", "interruption_high"],
+    "time_of_day": "afternoon",
+    "reward": 1.0
+  }
+]
+

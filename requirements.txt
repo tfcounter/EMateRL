@@ -1,0 +1,15 @@
+agno
+pydantic>=2.7.0
+numpy>=1.26.0
+pyyaml>=6.0.1
+
+# Memory System Dependencies
+mem0ai>=0.1.0
+chromadb>=0.4.0
+sentence-transformers>=2.2.0
+sqlite3
+
+# Additional AI/ML Dependencies  
+openai>=1.0.0
+tiktoken>=0.5.0
+

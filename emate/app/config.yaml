@@ -1,0 +1,8 @@
+personality: StandardAssistant  # Available: StandardAssistant, CuteCat, ColdBoss, WarmSister, AnimeWizard, SarcasticFighter
+agent_mode: QLearning
+weights:
+  explicit: 0.4
+  emotion_delta: 0.3
+  task_signal: 0.2
+  focus_metrics: 0.1
+
