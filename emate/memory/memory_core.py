@@ -19,7 +19,12 @@ from pathlib import Path
 from typing import Dict, List, Optional, Any, Tuple
 
 import numpy as np
-from sentence_transformers import SentenceTransformer
+try:
+    from sentence_transformers import SentenceTransformer
+    SENTENCE_TRANSFORMERS_AVAILABLE = True
+except ImportError:
+    SentenceTransformer = None
+    SENTENCE_TRANSFORMERS_AVAILABLE = False
 
 from .memory_types import (
     MemoryType, MemoryImportance, FactualMemory, EpisodicMemory, 
@@ -57,11 +62,15 @@ class MemoryCore:
         self.max_memory_size = max_memory_size
         
         # 初始化文本嵌入模型
-        try:
-            self.embedding_model = SentenceTransformer(embedding_model)
-            logger.info(f"已加载嵌入模型: {embedding_model}")
-        except Exception as e:
-            logger.warning(f"嵌入模型加载失败: {e}, 使用简单向量化")
+        if SENTENCE_TRANSFORMERS_AVAILABLE:
+            try:
+                self.embedding_model = SentenceTransformer(embedding_model)
+                logger.info(f"已加载嵌入模型: {embedding_model}")
+            except Exception as e:
+                logger.warning(f"嵌入模型加载失败: {e}, 使用简单向量化")
+                self.embedding_model = None
+        else:
+            logger.info("SentenceTransformers不可用，使用简单向量化")
             self.embedding_model = None
         
         # 初始化SQLite数据库
